@@ -1,0 +1,22 @@
+#books{
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.book{
+    width:75px;
+    height:75px;
+    border:1px solid black;
+    margin:1em;
+}
+
+#add_book_btn{
+    border:1px solid black;
+    background-color: mediumseagreen;
+}
+
+#add_book_btn:hover{
+    border: 2px solid black;
+}
