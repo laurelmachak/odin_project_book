@@ -20,8 +20,8 @@ function addElement(tag_name,content,parent_id){
 
 let myLibrary = [];
 
-myLibrary.push(new Book('Dune', 'Frank Herbert', 412, "no"));
-myLibrary.push(new Book('The Hobbit', 'J.R.R. Tolkien', 310, "yes"));
+myLibrary.push(new Book('Dune', 'Frank Herbert', 412, false));
+myLibrary.push(new Book('The Hobbit', 'J.R.R. Tolkien', 310, true));
 
 // function addBookToLibrary(){
 
@@ -34,9 +34,17 @@ function render(new_book){
     let card = document.createElement('div');
     card.setAttribute('class', 'book_card');
 
+    let title_p = document.createElement('p');
     let book_title = document.createTextNode(new_book.title);
-    card.appendChild(book_title);
+    title_p.appendChild(book_title);
 
+    let author_p = document.createElement('p');
+    let book_author = document.createTextNode(new_book.author);
+    author_p.appendChild(book_author);
+
+
+    card.appendChild(title_p);
+    card.appendChild(author_p);
     list_item.appendChild(card);
 
     let library = document.getElementById('books');
@@ -46,13 +54,25 @@ function render(new_book){
 render(myLibrary[0]);
 
 
+
+
 let add_button = document.getElementById('add_book_btn');
 
 add_button.addEventListener('click', () => {
     let title = document.getElementById("title").value;
     let author = document.getElementById('author').value;
     let pages = document.getElementById('pages').value;
-    let new_book = new Book(title, author, pages, "no");
+    let read_radios = document.getElementsByName('has_read');
+    for (let i=0; i<read_radios.length; i++){
+        if (read_radios[i].checked){
+            var read = read_radios[i].value;
+            break;
+        }
+    }
+    console.log(read);
+
+    let new_book = new Book(title, author, pages, read);
+    console.log(new_book);
     render(new_book);
 })
 
